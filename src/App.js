@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import SearchCityBar from './components/SearchCityBar';
 import WeatherInfo from './components/WeatherInfo';
 import ErrorResult from './components/ErrorResult';
+
 import './css/App.css';
 
 
@@ -59,15 +60,17 @@ function App() {
 
   return (
     <div className="App">
-
-      {/* Sending  */}
-      <SearchCityBar
-        value={usrInput}
-        submit={handleSubmit}
-        change={handleInputChange}
-      />
+      <header>
+        {/* Sending  */}
+        <SearchCityBar
+          value={usrInput}
+          submit={handleSubmit}
+          change={handleInputChange}
+        />
+      </header>
 
       { dataAvailable && <WeatherInfo
+        // Filtering and sending appropriate information from fetched API response
         weather={
           {
             name: apiData.name,

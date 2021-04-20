@@ -1,17 +1,38 @@
 import PropTypes from 'prop-types';
+import { styled } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import IconButton from '@material-ui/core/IconButton';
+import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForwardRounded';
+
+const SearchBar = styled(TextField)({
+
+});
+
+const SearchButton = styled(IconButton)({
+
+});
+
 
 const SearchCityBar = ({submit, change, value}) => {
     return (
         <div>
-            <input
+            <SearchBar
+                id="outlined-basic"
                 type="text"
-                id="header-search"
-                placeholder="Enter City"
+                label="Enter City"
                 name="s"
                 value = {value}
                 onChange={change}
+                variant= "outlined"
             />
-            <button type="submit" onClick={submit}>-></button>
+            
+            <SearchButton 
+                type="submit"
+                onClick={submit}
+            >
+                <ArrowForwardRoundedIcon />
+                
+            </SearchButton>
 
         </div>
     )
