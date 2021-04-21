@@ -1,10 +1,21 @@
 *{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Orienta', sans-serif;
 }
 
 .App {
   /* text-align: center; */
+  
 }
 header{
   text-align: center;
+}
+
+h1{
+  font-weight: 20;
+  position: relative;  
+	font-size: 200%;
+	line-height: 40px;
+	padding: 1%;
+  text-align: center;
+	color:white;
 }

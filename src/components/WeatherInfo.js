@@ -14,7 +14,7 @@ const WeatherInfo = ({ weather }) => {
                     country = {weather.country}
                 />
             </div>
-            <Grid container justify="center">
+            <Grid container justify="center" spacing={5}>
                 <Card variant="outlined">
                     <CardContent>
                         <Grid item md={5} justify="center">

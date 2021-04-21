@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 const LocationLabel = ({city, country}) => {
     return (
         <div>
-            {city}, {country}
+            <h1>{city}, {country}</h1>
         </div>
     );
 };

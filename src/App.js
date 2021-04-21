@@ -7,6 +7,7 @@ import './css/App.css';
 
 
 
+
 function App() {
 
   let [apiData, setApiData] = useState({});
@@ -14,6 +15,8 @@ function App() {
   let [error, setError] = useState(false);
   let [loading, setLoading] = useState(false);
   let [dataAvailable, setDataAvailable] = useState(false);
+
+  
 
   //  API key is stored in .env file (which is not pushed to github) to keep it secrete from users.
   const weatherApiKey = process.env.REACT_APP_OPENWEATHERMAPS_API_KEY;
@@ -66,6 +69,7 @@ function App() {
           value={usrInput}
           submit={handleSubmit}
           change={handleInputChange}
+          showResult={error || dataAvailable}
         />
       </header>
 
