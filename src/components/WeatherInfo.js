@@ -4,6 +4,11 @@ import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import IconTemp from './IconTemp';
+import { styled, withStyles } from '@material-ui/core/styles';
+
+const CardHolder = styled(Card)({
+    backgroundColor: 'rgba(0,0,0,0.3)',
+});
 
 const WeatherInfo = ({ weather }) => {
     return (
@@ -14,46 +19,40 @@ const WeatherInfo = ({ weather }) => {
                     country = {weather.country}
                 />
             </div>
-            <Grid container justify="center" spacing={5}>
-                <Card variant="outlined">
-                    <CardContent>
-                        <Grid item md={5} justify="center">
-                            
+            <Grid container justify="center" spacing={2}>
+                <Grid item sm={11} md={12} lg={8} xl={3}>
+                    <CardHolder variant="outlined">
+                        <CardContent>
                             <IconTemp 
                                 icon = {weather.icon}
                                 temprature = {weather.temp}
-                                main = {weather.main}
-                                feels_like = {weather.feels_like}
+                                main = {weather.weather_main}
                             />
+                            {weather.wind_speed}
                             
-                            <Grid container>
-                                
-                                <Grid container>
-                                    <Grid item sm = {3}>
-                                        {weather.wind_speed}
-                                    </Grid>
-                                    <Grid item sm = {3}>
-                                        {weather.wind_speed}
-                                    </Grid>
-                                </Grid>
-                                <Grid container>
-                                    <Grid item sm = {3}>
-                                            {weather.wind_speed}
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                    </CardContent>
-                </Card>
-                <Grid item md={6} justify="center">
-                    <Card variant="outlined">
+                        </CardContent>
+                    </CardHolder>
+                </Grid>
+                <Grid item sm={11} xl={8}>
+                    <CardHolder variant="outlined">
                         <CardContent>
                             Hello
                         </CardContent>
-                    </Card>
+                    </CardHolder>
                 </Grid>
             </Grid>
-        </div>
+            {/* 
+                    
+                        
+                            
+                            
+                            
+                            
+                <Grid item md={6} justify="center">
+                    
+                </Grid>
+            </Grid> */}
+        </div> 
     );
 };
 
@@ -71,6 +70,7 @@ WeatherInfo.propTypes = {
         weather_main: PropTypes.string,
         icon: PropTypes.string,
         wind_speed: PropTypes.number,
+        uvi: PropTypes.number,
     }).isRequired,
 };
 export default WeatherInfo

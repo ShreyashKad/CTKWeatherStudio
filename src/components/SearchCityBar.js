@@ -1,30 +1,37 @@
 import PropTypes from 'prop-types';
-import { styled } from '@material-ui/core/styles';
+import { styled, withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForwardRounded';
 
-const SearchBar = styled(TextField)({
-    width: '20%',
-    '& input:valid + fieldset': {
+const SearchBar = withStyles({
+  root: {
+    width: '30%',
+    '& label.Mui-focused': {
+      color: 'white',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'white',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
         borderColor: 'white',
-        borderWidth: 2,
       },
       '&:hover fieldset': {
         borderColor: 'white',
       },
-      '& input:invalid + fieldset': {
+      '&.Mui-focused fieldset': {
         borderColor: 'white',
-        borderWidth: 2,
       },
-      '& input:valid:focus + fieldset': {
-        borderLeftWidth: 6,
-        borderColor: 'white',
-        padding: '4px !important', // override inline-style
-      },
-});
+    },
+  },
+})(TextField);
 
 const SearchButton = styled(IconButton)({
+  // backgroundColor: 'white',
+  // '&:hover':{
+  //   backgroundColor: '#efefef',
+  // },
 
 });
 

@@ -15,12 +15,19 @@ function App() {
   let [error, setError] = useState(false);
   let [loading, setLoading] = useState(false);
   let [dataAvailable, setDataAvailable] = useState(false);
+  let [lat, setlat] = useState(0.0);
+  let [lon, setlon] = useState(0.0);
+  let [city, setCity] = useState('');
+  let [country, setCountry] = useState('');
+
 
   
 
   //  API key is stored in .env file (which is not pushed to github) to keep it secrete from users.
   const weatherApiKey = process.env.REACT_APP_OPENWEATHERMAPS_API_KEY;
-  const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${usrInput}&appid=${weatherApiKey}&units=metric`;
+  const geoCodingApiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${usrInput}&limit=1&appid=${weatherApiKey}`;
+  const weatherApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${weatherApiKey}&units=metric`;
+  
   /* 
   Function to store the user input inserted by user
   Input: city name (text)
@@ -29,31 +36,59 @@ function App() {
     setusrInput(e.target.value)
   }
 
+  const fetchWeatherData = () => {
+    
+    console.log(weatherApiUrl)
+    // fetching current, hourly, weekly weather data based on lat and lang
+    fetch(weatherApiUrl)
+    .then(res => res.json())
+    .then((data) => {
+      // Code 200 is for succesfull fetching of data, rest are error codes
+      // if (data.cod !== 200) {
+      //   throw new Error()
+      // }
+      setApiData(data)
+      setLoading(false)
+      setError(false)
+      setDataAvailable(true)
+    });
+    // .catch(err => {
+    //   console.log(err.meesage);
+    //   setLoading(false)
+    //   setError(true)
+    //   setDataAvailable(false)
+    // });
+
+  };
+
+
   /*
   Function to call (current) OpenWeatherMaps API based on input given by user
   */
   const handleSubmit = () => {
 
+    // let lat = 0.0
+    // let lon = 0.0
     setLoading(true)
-    fetch(weatherApiUrl)
+    // Geocoding user input to obtain lat and lang
+    fetch(geoCodingApiUrl)
       .then(res => res.json())
       .then((data) => {
-        // Code 200 is for succesfull fetching of data, rest are error codes
-        if (data.cod !== 200) {
+        if (data.length === 0){
           throw new Error()
         }
-        setApiData(data)
-        setLoading(false)
-        setError(false)
-        setDataAvailable(true)
+        setlat(data[0].lat);
+        setlon(data[0].lon);
+        setCity(data[0].local_names.en);
+        setCountry(data[0].country);
+        fetchWeatherData();
       })
       .catch(err => {
         console.log(err.meesage);
-        setLoading(false)
-        setError(true)
-        setDataAvailable(false)
+        setLoading(false);
+        setError(true);
+        setDataAvailable(false);
       });
-
   }
 
   // Effect hook to see response of API call, invoked when variable apiData is changed. 
@@ -77,19 +112,19 @@ function App() {
         // Filtering and sending appropriate information from fetched API response
         weather={
           {
-            name: apiData.name,
-            country: apiData.sys.country,
-            sunset: apiData.sys.sunset,
-            sunrise: apiData.sys.sunrise,
-            visibility: apiData.visibility,
-            feels_like: apiData.main.feels_like,
-            humidity: apiData.main.humidity,
-            pressure: apiData.main.pressure,
-            temp: apiData.main.temp,
-            weather_main: apiData.weather[0].main,
-            icon: apiData.weather[0].icon,
-            wind_speed: apiData.wind.speed,
-
+            name: city,
+            country: country,
+            sunset: apiData.current.sunset,
+            sunrise: apiData.current.sunrise,
+            visibility: apiData.current.visibility,
+            feels_like: Math.round(apiData.current.feels_like),
+            humidity: apiData.current.humidity,
+            pressure: apiData.current.pressure,
+            temp: Math.round(apiData.current.temp),
+            weather_main: apiData.current.weather[0].main,
+            icon: apiData.current.weather[0].icon,
+            wind_speed: apiData.current.wind_speed,
+            uvi: apiData.current.uvi,
           }
         }
       />}

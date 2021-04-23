@@ -1,5 +1,6 @@
 *{
   font-family: 'Orienta', sans-serif;
+  color: whitesmoke !important;
 }
 
 .App {
@@ -11,11 +12,30 @@ header{
 }
 
 h1{
-  font-weight: 20;
+  font-weight: 500;
   position: relative;  
 	font-size: 200%;
 	line-height: 40px;
 	padding: 1%;
   text-align: center;
 	color:white;
+}
+
+img{
+  display: block;
+}
+
+
+.temp{
+  font-size: 150%;
+  font-weight: 400;
+  /* margin-top: 0; */
+  /* display:inline;
+  flex-direction: column; */
+}
+
+.weatherMain{
+  font-size: 80%;
+  font-weight: 300;
+  margin-bottom: 0;
 }
