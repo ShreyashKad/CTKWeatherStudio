@@ -6,7 +6,9 @@ import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForwardRounded';
 
 const SearchBar = withStyles({
   root: {
+    margin: '0 auto',
     width: '30%',
+    justifyContent: "center",
     '& label.Mui-focused': {
       color: 'white',
     },
@@ -32,6 +34,7 @@ const SearchButton = styled(IconButton)({
   // '&:hover':{
   //   backgroundColor: '#efefef',
   // },
+  margin: '0 auto',
 
 });
 
