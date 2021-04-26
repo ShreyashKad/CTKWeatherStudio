@@ -43,7 +43,7 @@ img{
 
 .weatherComponents{
   background-color: rgba(0,0,0,0.5);
-  padding: 10%;
+  padding: 7%;
   width: 50%;
   text-align: center;
 }
@@ -52,3 +52,19 @@ img{
   font-size: 85%;
 }
 
+.cardStyle{
+  width: 16.66%;
+  background-color: rgba(0,0,0,0.5);
+  text-align: center;
+  padding: 1%;
+}
+
+.weatherWeekComponents{
+  background-color: rgba(0,0,0,0.5);
+  padding: 1%;
+  width: 23%;
+  text-align: center;
+  margin-right: 2%  !important;
+  margin-bottom: 2% !important;
+  border-radius: 5%;
+}

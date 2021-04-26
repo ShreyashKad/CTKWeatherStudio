@@ -4,7 +4,6 @@ import WeatherInfo from './components/WeatherInfo';
 import ErrorResult from './components/ErrorResult';
 
 import './css/App.css';
-import { act } from "react-dom/test-utils";
 
 
 
@@ -28,7 +27,7 @@ function App() {
   //  API key is stored in .env file (which is not pushed to github) to keep it secrete from users.
   const weatherApiKey = process.env.REACT_APP_OPENWEATHERMAPS_API_KEY;
   const geoCodingApiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${usrInput}&limit=1&appid=${weatherApiKey}`;
-  const weatherApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latlon.lat}&lon=${latlon.lon}&exclude=minutely&appid=${weatherApiKey}&units=metric`;
+  
   
   /* 
   Function to store the user input inserted by user
@@ -37,31 +36,6 @@ function App() {
   const handleInputChange = (e) => {
     setusrInput(e.target.value)
   }
-
-  const fetchWeatherData = () => {
-    
-    console.log(weatherApiUrl)
-    // fetching current, hourly, weekly weather data based on lat and lang
-    fetch(weatherApiUrl)
-    .then(res => res.json())
-    .then((data) => {
-      // Code 200 is for succesfull fetching of data, rest are error codes
-      // if (data.cod !== 200) {
-      //   throw new Error()
-      // }
-      setApiData(data)
-      setLoading(false)
-      setError(false)
-      setDataAvailable(true)
-    });
-    // .catch(err => {
-    //   console.log(err.meesage);
-    //   setLoading(false)
-    //   setError(true)
-    //   setDataAvailable(false)
-    // });
-
-  };
 
 
   /*
@@ -106,6 +80,8 @@ function App() {
 
   useEffect(() => {
     if (firstRender === false){
+      const weatherApiKey = process.env.REACT_APP_OPENWEATHERMAPS_API_KEY;
+      const weatherApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latlon.lat}&lon=${latlon.lon}&exclude=minutely&appid=${weatherApiKey}&units=metric`;
       console.log(weatherApiUrl)
       // fetching current, hourly, weekly weather data based on lat and lang
       fetch(weatherApiUrl)
@@ -152,6 +128,7 @@ function App() {
             icon: apiData.current.weather[0].icon,
             wind_speed: apiData.current.wind_speed,
             uvi: apiData.current.uvi,
+            weekData: apiData.daily,
           }
         }
       />}

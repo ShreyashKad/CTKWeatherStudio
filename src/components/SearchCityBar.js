@@ -40,10 +40,7 @@ const SearchButton = styled(IconButton)({
 
 
 const SearchCityBar = ({submit, change, value, showResult}) => {
-    const serachCSS ={
-        // marginTop: {showResult ? 10% : '20%'} ,
-        
-    }
+    
     return (
         <div style={showResult ? {marginTop: '5%', transition: '1.4s'} : {marginTop: '20%', transition: '0.3s 1.4s'}}>
             <SearchBar

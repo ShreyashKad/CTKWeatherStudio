@@ -1,23 +1,26 @@
+import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types'
 
-const WeatherComponent = ({ attribute, value}) => {
+const WeatherComponent = ({ day, icon, maxTemp, minTemp}) => {
 
     
     return (
-        <>
-            <div>
+        <Grid container>
+            <Grid item>
                 {attribute}
-            </div>
-            <div>
+            </Grid>
+            <Grid>
                 {value}
-            </div>
-        </>
+            </Grid>
+        </Grid>
     );
 };  
 
 WeatherComponent.propTypes = {
-    attribute: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
+    day: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
+    maxTemp: PropTypes.string.isRequired,
+    minTemp: PropTypes.number.isRequired,
 };
 
 export default WeatherComponent

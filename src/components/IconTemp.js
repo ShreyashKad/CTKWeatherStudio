@@ -1,15 +1,18 @@
-import Grid from '@material-ui/core/Grid';
+import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 
 const IconTemp = ({icon, temprature, main}) =>{
     return (
         
-        <Grid container direction="row">
-            <Grid container justify ="center">
-                {/* <Grid item> */}
-                <img src={`http://openweathermap.org/img/w/${icon}.png`} alt="weather status icon" width='100vm' height='100vm'></img>
-                <div className="temp">{temprature}&#176; <div className="weatherMain">{main}</div> </div>
+        
+            <Grid container style={{height:'100%'}} justify='center' alignItems='center'>
+                <Grid item>
+                    <img src={`http://openweathermap.org/img/w/${icon}.png`} alt="weather status icon" width='100vm' height='100vm'></img>
+                </Grid>
+                <Grid item>
+                    <div className="temp">{temprature}&#176; <div className="weatherMain">{main}</div> </div>
+                </Grid>
                 {/* </Grid> */}
                 {/* <Grid item container direction="column">
                     <Grid item>
@@ -17,10 +20,10 @@ const IconTemp = ({icon, temprature, main}) =>{
                     </Grid>
                     <Grid item>
                         Feels Like: {feels_like}
-                    </Grid>
-                </Grid> */}
-            </Grid>
-        </Grid>
+                    </Grid>*/}
+                </Grid> 
+            // </>
+        
     );
 };
 
