@@ -1,7 +1,9 @@
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
+
 const ErrorResult = () => {
     return (
-        <div>
-            Error
+        <div className="errorBlock fadeInBottom fadeInAnimation" >
+            <SentimentVeryDissatisfiedIcon fontSize="large" /> Sorry, Something went wrong
         </div>
     );
 };

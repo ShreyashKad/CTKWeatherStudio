@@ -10,7 +10,7 @@ const WeakWeatherCard = ({ onClick, day, icon, maxTemp, minTemp}) => {
 
     
     return (
-        <div onClick={onClick} style={{textAlign:"center"}}>
+        <div onClick={onClick} >
             <div>
                 {day}
             </div>
@@ -27,7 +27,7 @@ const WeakWeatherCard = ({ onClick, day, icon, maxTemp, minTemp}) => {
 
 WeakWeatherCard.propTypes = {
     onClick: PropTypes.func,
-    day: PropTypes.number.isRequired,
+    day: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
     maxTemp: PropTypes.number.isRequired,
     minTemp: PropTypes.number.isRequired,

@@ -64,7 +64,7 @@ function App() {
 
       })
       .catch(err => {
-        console.log(err.meesage);
+        console.log('Please enter city');
         setLoading(false);
         setError(true);
         setDataAvailable(false);
@@ -95,6 +95,7 @@ function App() {
           setLoading(false)
           setError(false)
           setDataAvailable(true)
+      
       });
     }
   }, [latlon, firstRender])
@@ -128,6 +129,7 @@ function App() {
             icon: apiData.current.weather[0].icon,
             wind_speed: apiData.current.wind_speed,
             uvi: apiData.current.uvi,
+            date: apiData.current.dt,
             weekData: apiData.daily,
           }
         }
